@@ -22,7 +22,7 @@ source ./_shared.sh
 LIB_NAME="boost_1_63_0"
 LIB_DEST_DIR=${TOOLS_ROOT}/libs
 # [ -d ${LIB_DEST_DIR} ] && rm -rf ${LIB_DEST_DIR}
-# [ -f "${LIB_NAME}.tar.gz" ] || wget https://www.openssl.org/source/${LIB_NAME}.tar.gz;
+[ -f "${LIB_NAME}.tar.gz" ] || wget https://sourceforge.net/projects/boost/files/boost/1.63.0/boost_1_63_0.tar.gz
 # Unarchive library, then configure and make for specified architectures
 configure_make() {
   ARCH=$1; ABI=$2;

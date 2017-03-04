@@ -12,6 +12,9 @@ configure() {
 
   TOOLCHAIN_ROOT=${TOOLS_ROOT}/${OUT}-android-toolchain
 
+  echo $ARCH
+  echo $ABI
+
   if [ "$ARCH" == "android" ]; then
     export ARCH_FLAGS="-mthumb"
     export ARCH_LINK=""
@@ -52,7 +55,7 @@ configure() {
 
   [ -d ${TOOLCHAIN_ROOT} ] || python $NDK/build/tools/make_standalone_toolchain.py \
                                      --api ${ANDROID_API} \
-                                     --stl libc++ \
+                                     --stl gnustl \
                                      --install-dir=${TOOLCHAIN_ROOT} \
                                      $NDK_FLAGS
 

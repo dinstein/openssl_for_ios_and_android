@@ -44,13 +44,10 @@ configure_make() {
   if make -j4; then
     make install
 
-    OUTPUT_ROOT=${TOOLS_ROOT}/../output/android/openssl-${ABI}
-    [ -d ${OUTPUT_ROOT}/include ] || mkdir -p ${OUTPUT_ROOT}/include
-    cp -r ${LIB_DEST_DIR}/${ABI}/include/openssl ${OUTPUT_ROOT}/include
-
-    [ -d ${OUTPUT_ROOT}/lib ] || mkdir -p ${OUTPUT_ROOT}/lib
-    cp ${LIB_DEST_DIR}/${ABI}/lib/libcrypto.a ${OUTPUT_ROOT}/lib
-    cp ${LIB_DEST_DIR}/${ABI}/lib/libssl.a ${OUTPUT_ROOT}/lib
+    OUTPUT_ROOT=${TOOLS_ROOT}/../output/openssl/${ABI}
+    [ -d ${OUTPUT_ROOT} ] || mkdir -p ${OUTPUT_ROOT}
+    cp ${LIB_DEST_DIR}/${ABI}/lib/libcrypto.a ${OUTPUT_ROOT}
+    cp ${LIB_DEST_DIR}/${ABI}/lib/libssl.a ${OUTPUT_ROOT}
   fi;
   popd
 
@@ -63,5 +60,10 @@ do
     # the minimum supported API level for 64 bit.
     [[ ${ANDROID_API} < 21 ]] && ( echo "${ABIS[i]}" | grep 64 > /dev/null ) && continue;
     configure_make "${ARCHS[i]}" "${ABIS[i]}"
+    OUTPUT_ABI=${ABIS[i]}
   fi
 done
+
+OUTPUT_ROOT=${TOOLS_ROOT}/../output/openssl/${ABI}
+[ -d ${OUTPUT_ROOT}/include ] || mkdir -p ${OUTPUT_ROOT}/include
+cp -r ${LIB_DEST_DIR}/${OUTPUT_ABI}/include/openssl ${OUTPUT_ROOT}/include

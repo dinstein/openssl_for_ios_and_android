@@ -64,6 +64,6 @@ do
   fi
 done
 
-OUTPUT_ROOT=${TOOLS_ROOT}/../output/openssl/${ABI}
-[ -d ${OUTPUT_ROOT}/include ] || mkdir -p ${OUTPUT_ROOT}/include
-cp -r ${LIB_DEST_DIR}/${OUTPUT_ABI}/include/openssl ${OUTPUT_ROOT}/include
+OUTPUT_INCLUDE=${TOOLS_ROOT}/../output/openssl/include
+[ -d ${OUTPUT_INCLUDE} ] || mkdir -p ${OUTPUT_INCLUDE}
+cp -r ${LIB_DEST_DIR}/${OUTPUT_ABI}/include/openssl ${OUTPUT_INCLUDE}

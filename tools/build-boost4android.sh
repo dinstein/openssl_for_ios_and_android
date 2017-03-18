@@ -42,6 +42,8 @@ configure_make() {
   ./b2 link=static cxxflags="-fPIC" cflags="-fPIC"  \
       --prefix=${LIB_DEST_DIR}/${ABI} \
       --with-thread --with-filesystem --with-system \
+      --with-random --with-regex --with-graph --with-random \
+      --with-chrono --with-signals --with-date_time \
       install
 
       # --with-thread --with-filesystem --with-system \
